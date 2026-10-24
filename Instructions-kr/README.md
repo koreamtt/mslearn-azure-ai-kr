@@ -2,7 +2,7 @@
 
 ## 목적
 
-이 디렉터리는 `instructions`에 있는 영문 Microsoft Learn 실습의 디렉터리 구조를 그대로 반영한 한국어 번역본을 관리합니다. 원본 디렉터리는 저장소에서 소문자 `instructions`로 관리되며, 번역 디렉터리는 요청한 이름인 `Instructions-kr`을 사용합니다.
+이 디렉터리는 `Instructions`에 있는 영문 Microsoft Learn 실습의 디렉터리 구조를 그대로 반영한 한국어 번역본을 관리합니다. 원본 디렉터리는 `Instructions`, 번역 디렉터리는 `Instructions-kr`이며, GitHub Pages에서는 경로의 대소문자를 구분합니다.
 
 - 영문 원본은 수정하지 않습니다.
 - 한국어 파일은 영문 원본과 동일한 상대 경로, 파일명 및 문서 구조를 유지합니다.
@@ -13,9 +13,9 @@
 
 | 구분 | 경로 |
 | --- | --- |
-| 영문 원본 | `instructions` |
+| 영문 원본 | `Instructions` |
 | 한국어 번역 | `Instructions-kr` |
-| 영문 미디어 | `instructions/**/media` |
+| 영문 미디어 | `Instructions/**/media` |
 | 한국어 미디어 | `Instructions-kr/**/media` |
 
 ## 번역 원칙
@@ -82,8 +82,8 @@ You are an agent that analyzes tasks.
 7. 모든 변경을 반영하고 검증한 후에만 기준 커밋과 검토일을 갱신합니다.
 
 ```powershell
-git diff af79d9a3fd8c972b1de35467d638344241a99420..HEAD -- instructions
-python .github\skills\mslearn-korean-localization\scripts\validate_translation.py --repo . --source instructions --target Instructions-kr --readme Instructions-kr\README.md
+git diff af79d9a3fd8c972b1de35467d638344241a99420..HEAD -- Instructions
+python .github\skills\mslearn-korean-localization\scripts\validate_translation.py --repo . --source Instructions --target Instructions-kr --readme Instructions-kr\README.md
 git diff --check
 git status --short
 ```
@@ -92,10 +92,10 @@ git status --short
 
 | 항목 | 값 |
 | --- | --- |
-| 저장소 | `hahaysh/mslearn-azure-ai-kr` |
+| 저장소 | `koreamtt/mslearn-azure-ai-kr` |
 | 기준 커밋 | `af79d9a3fd8c972b1de35467d638344241a99420` |
 | 마지막 검토일 | `2026-09-27` |
-| 전체 상태 | 번역 완료 및 검증 통과 |
+| 전체 상태 | 한국어 실습 27개 존재, 원문 코드 블록 동기화 재검토 필요 |
 
 ## 파일별 상태
 
@@ -131,10 +131,12 @@ git status --short
 
 ## 검증 결과
 
+2026-10-24 Pages 구성 점검에서 기존 번역 검증기를 다시 실행한 결과, 21개 실습에서 원문 코드 블록의 변경 또는 이동이 검출되었습니다. 이 차이는 Pages 설정 변경 전부터 존재했으며, 이번 작업에서는 영문 및 한국어 실습 본문을 변경하지 않았습니다. 아래 항목은 마지막 번역 검토일인 2026-09-27의 기록입니다.
+
 - 번들 검증기: 27개 Markdown 파일 통과
 - 미러 자산: 4개 파일의 SHA-256이 원본과 일치
 - 프롬프트: 영문과 한국어 `prompt` 블록 4쌍 확인
-- 영문 원본: `instructions` 아래 변경 없음
+- 영문 원본: `Instructions` 아래 변경 없음
 
 ## 검증 체크리스트
 
