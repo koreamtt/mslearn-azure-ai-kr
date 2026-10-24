@@ -14,7 +14,7 @@ layout: home
 
 ## 주제 영역
 
-{% assign exercises = site.pages | where_exp:"page", "page.url contains '/Instructions-kr/' and page.lab.title" | sort: "url" %}
+{% assign exercises = site.pages | where_exp:"page", "page.url contains '/Instructions-kr/'" | where_exp:"page", "page.lab.title" | sort: "url" %}
 {% assign grouped_exercises = exercises | group_by: "lab.topic" %}
 
 <ul>
