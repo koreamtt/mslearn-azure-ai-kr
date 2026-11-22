@@ -114,7 +114,7 @@ lab:
 
 1. *k8s/deployment.yaml* 파일을 열어 파일 작성을 시작합니다.
 
-> **팁:** YAML을 해당 **BEGIN** 및 **END** 주석과 같은 들여쓰기 수준에 붙여 넣습니다. 블록의 들여쓰기가 맞지 않으면 붙여 넣은 줄을 선택하고 **Tab** 또는 **Shift+Tab**을 사용하여 전체 블록을 오른쪽이나 왼쪽으로 이동합니다.
+> **팁:** 코드 들여쓰기를 올바르게 유지하려면 코드를 왼쪽 여백의 첫 번째 열에 맞춰 붙여넣습니다. 붙여넣은 줄 전체를 선택하고 **Tab**을 눌러 **BEGIN / END** 표시와 정렬합니다. 필요하면 **Shift+Tab**을 눌러 들여쓰기를 줄입니다.
 
 1. **# BEGIN: Container specification** 주석을 찾아 그 아래에 다음 YAML 섹션을 매니페스트에 추가합니다. YAML 들여쓰기가 올바른지 확인합니다.
 
@@ -233,7 +233,7 @@ lab:
 
     **Bash**
     ```bash
-    source .venv/Scripts/activate
+    source .venv/bin/activate
     ```
 
     **PowerShell**

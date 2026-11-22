@@ -113,15 +113,13 @@ OpenTelemetry는 애플리케이션에서 추적, 메트릭 및 로그를 수집
 
 1. 코드를 추가하려면 *client/telemetry_functions.py* 파일을 엽니다.
 
->**참고:** 애플리케이션에 추가하는 코드 블록은 해당 코드 섹션의 주석과 같은 위치에 맞춰야 합니다.
-
 ### 원격 분석 구성 코드 추가
 
 이 섹션에서는 애플리케이션이 Application Insights로 추적을 내보내도록 Azure Monitor OpenTelemetry Distro를 구성하는 코드를 추가합니다. 함수는 환경 변수에서 연결 문자열을 읽고, Microsoft Entra 인증을 위해 **DefaultAzureCredential**을 만들며, Azure Monitor 내보내기 도구를 구성합니다. 앱은 로컬에서 실행되므로 자격 증명에서 관리 ID 공급자를 제외합니다. 이 설정이 없으면 자격 증명 체인이 원격 분석을 내보낼 때마다 Azure Instance Metadata Service에 연결을 시도하고, 실패한 HTTP 호출이 Application Map에 불필요하게 표시됩니다.
 
 이 함수는 Azure Monitor OpenTelemetry Distro 패키지의 **configure_azure_monitor()**를 호출합니다. 이 단일 호출은 Azure Monitor 추적 내보내기 도구로 OpenTelemetry SDK를 구성하고 Flask 요청의 자동 계측을 설정합니다. **credential** 매개 변수는 Entra 기반 인증을 사용하도록 하여 앱이 계측 키 대신 Monitoring Metrics Publisher 역할로 원격 분석을 게시하도록 합니다. 배포 스크립트가 *.env* 파일에 설정하는 **OTEL_SERVICE_NAME** 환경 변수는 Application Map에 표시되는 **cloud.role.name**을 제어합니다.
 
-> **팁:** 일치하는 **BEGIN** 및 **END** 주석과 같은 들여쓰기 수준에 코드를 붙여 넣습니다. 블록의 위치가 맞지 않으면 붙여 넣은 줄을 선택하고 **Tab** 또는 **Shift+Tab**을 사용하여 전체 블록을 오른쪽이나 왼쪽으로 이동합니다.
+> **팁:** 코드 들여쓰기를 올바르게 유지하려면 코드를 왼쪽 여백의 첫 번째 열에 맞춰 붙여넣습니다. 붙여넣은 줄 전체를 선택하고 **Tab**을 눌러 **BEGIN / END** 표시와 정렬합니다. 필요하면 **Shift+Tab**을 눌러 들여쓰기를 줄입니다.
 
 1. **# BEGIN CONFIGURE TELEMETRY FUNCTION** 주석을 찾아 그 아래에 다음 코드를 추가합니다. 코드 들여쓰기가 올바른지 확인합니다.
 
@@ -283,7 +281,7 @@ OpenTelemetry는 애플리케이션에서 추적, 메트릭 및 로그를 수집
 
     **Bash**
     ```bash
-    source .venv/Scripts/activate
+    source .venv/bin/activate
     ```
 
     **PowerShell**

@@ -111,15 +111,13 @@ AI 워크플로는 요청 수신과 모델 추론을 분리하고 결과를 여�
 
 1. 코드 추가를 시작하려면 *client/service_bus_functions.py* 파일을 엽니다.
 
->**참고:** 애플리케이션에 추가하는 코드 블록은 해당 코드 섹션의 주석과 정렬해야 합니다.
-
 ### 큐로 메시지를 보내는 코드 추가
 
 이 섹션에서는 큐에 메시지 세 개를 보내는 코드를 추가합니다. 두 메시지에는 추론 요청을 나타내는 유효한 JSON 페이로드가 있고, 하나에는 처리 실패를 시뮬레이션하여 배달 못한 편지 큐를 보여 주는 의도적으로 잘못된 JSON이 있습니다.
 
 이 함수는 **DefaultAzureCredential**을 사용하여 **ServiceBusClient**를 열고 **get_queue_sender()**로 큐 발신자를 만듭니다. 각 메시지에는 중복 제거용 **message_id**, 추적용 **correlation_id**, 사용자 지정 메타데이터용 **application_properties**가 있는 **ServiceBusMessage** 개체 세 개를 구성합니다. 두 메시지에는 유효한 JSON 페이로드를 넣고 한 메시지에는 의도적으로 잘못된 JSON을 넣습니다. **send_messages()** 메서드는 각 메시지를 개별적으로 큐에 보냅니다.
 
-> **팁:** 코드 블록을 해당 BEGIN 및 END 주석과 같은 들여쓰기 수준에 붙여 넣습니다. 블록이 정렬되지 않으면 붙여 넣은 줄을 선택하고 **Tab** 또는 **Shift+Tab**을 사용하여 전체 블록을 오른쪽이나 왼쪽으로 이동합니다.
+> **팁:** 코드 들여쓰기를 올바르게 유지하려면 코드를 왼쪽 여백의 첫 번째 열에 맞춰 붙여넣습니다. 붙여넣은 줄 전체를 선택하고 **Tab**을 눌러 **BEGIN / END** 표시와 정렬합니다. 필요하면 **Shift+Tab**을 눌러 들여쓰기를 줄입니다.
 
 1. **# BEGIN SEND MESSAGES FUNCTION** 주석을 찾아 그 아래에 다음 코드를 추가합니다. 코드 정렬 상태를 확인합니다.
 
@@ -401,7 +399,7 @@ AI 워크플로는 요청 수신과 모델 추론을 분리하고 결과를 여�
 
     **Bash**
     ```bash
-    source .venv/Scripts/activate
+    source .venv/bin/activate
     ```
 
     **PowerShell**

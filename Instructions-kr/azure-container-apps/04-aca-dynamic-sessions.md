@@ -123,7 +123,7 @@ Azure Container Apps 동적 세션은 AI 생성 코드 또는 사용자가 제�
 
 1. 코드를 추가할 *client/dynamic_sessions_functions.py* 파일을 엽니다.
 
-> **Tip:** 여러 코드 섹션에는 **DynamicSessionClient** 클래스의 메서드가 있습니다. 해당 메서드의 들여쓰기가 **BEGIN** 및 **END** 마커와 정렬되어 있는지 확인합니다.
+> **팁:** 코드 들여쓰기를 올바르게 유지하려면 코드를 왼쪽 여백의 첫 번째 열에 맞춰 붙여넣습니다. 붙여넣은 줄 전체를 선택하고 **Tab**을 눌러 **BEGIN / END** 표시와 정렬합니다. 필요하면 **Shift+Tab**을 눌러 들여쓰기를 줄입니다.
 
 ### 세션 클라이언트를 만드는 코드 추가
 
@@ -335,7 +335,7 @@ Azure Container Apps 동적 세션은 AI 생성 코드 또는 사용자가 제�
 
     **Bash**
     ```bash
-    source .venv/Scripts/activate
+    source .venv/bin/activate
     ```
 
     **PowerShell**

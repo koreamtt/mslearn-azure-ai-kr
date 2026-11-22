@@ -120,15 +120,13 @@ AI 콘텐츠 조정 시스템은 제출된 콘텐츠를 분류하고 검토하�
 
 1. 코드 추가를 시작하려면 *client/event_grid_functions.py* 파일을 엽니다.
 
->**참고:** 애플리케이션에 추가하는 코드 블록은 해당 코드 섹션의 주석과 정렬해야 합니다.
-
 ### 조정 이벤트 게시 코드 추가
 
 이 섹션에서는 Event Grid 네임스페이스 토픽에 콘텐츠 조정 이벤트 다섯 개를 게시하는 코드를 추가합니다. 이벤트는 CloudEvents v1.0 스키마를 사용하며 플래그가 지정된 콘텐츠, 승인된 콘텐츠 및 상향 검토 등 서로 다른 조정 결과를 나타냅니다. 각 구독의 이벤트 유형 필터가 어떤 이벤트를 전달하는지 확인할 수 있습니다.
 
 이 함수는 이벤트 정의를 **type**, **source**, **subject** CloudEvent 봉투 필드와 **data** 페이로드가 포함된 *moderation_events.json* 파일에서 불러옵니다. 게시 시 함수는 각 이벤트에 고유한 **id**와 현재 UTC **timestamp**를 추가한 다음, **CloudEvent** 개체를 만들고 단일 요청으로 **send()** 메서드를 사용하여 게시합니다. **EventGridPublisherClient**는 네임스페이스 토픽 엔드포인트를 대상으로 하는 **namespace_topic** 매개 변수로 구성되며 Microsoft Entra 인증에 **DefaultAzureCredential**을 사용합니다.
 
-> **팁:** 코드 블록을 해당 BEGIN 및 END 주석과 같은 들여쓰기 수준에 붙여 넣습니다. 블록이 정렬되지 않으면 붙여 넣은 줄을 선택하고 **Tab** 또는 **Shift+Tab**을 사용하여 전체 블록을 오른쪽이나 왼쪽으로 이동합니다.
+> **팁:** 코드 들여쓰기를 올바르게 유지하려면 코드를 왼쪽 여백의 첫 번째 열에 맞춰 붙여넣습니다. 붙여넣은 줄 전체를 선택하고 **Tab**을 눌러 **BEGIN / END** 표시와 정렬합니다. 필요하면 **Shift+Tab**을 눌러 들여쓰기를 줄입니다.
 
 1. **# BEGIN PUBLISH EVENTS FUNCTION** 주석을 찾아 그 아래에 다음 코드를 추가합니다. 코드 정렬 상태를 확인합니다.
 
@@ -347,7 +345,7 @@ AI 콘텐츠 조정 시스템은 제출된 콘텐츠를 분류하고 검토하�
 
     **Bash**
     ```bash
-    source .venv/Scripts/activate
+    source .venv/bin/activate
     ```
 
     **PowerShell**

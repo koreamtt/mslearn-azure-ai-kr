@@ -98,15 +98,13 @@ lab:
 
 1. 코드 추가를 시작하려면 *client/vector_functions.py* 파일을 엽니다.
 
->**참고:** 애플리케이션에 추가하는 코드 블록은 해당 코드 섹션의 주석과 들여쓰기가 일치해야 합니다.
-
 ### Azure Managed Redis 연결 코드 추가
 
 이 섹션에서는 Microsoft Entra ID로 인증하는 Redis 클라이언트를 만드는 코드를 추가합니다. Entra ID를 사용하면 앱이 액세스 키를 처리하지 않아도 됩니다.
 
 **get_client()** 함수는 **REDIS_HOST** 환경 변수에서 Redis 엔드포인트를 읽고 **create_from_default_azure_credential()**을 호출하여 자격 증명 공급자를 빌드합니다. 이 공급자는 **DefaultAzureCredential**을 사용하여 Microsoft Entra 토큰을 가져오고 백그라운드에서 자동으로 새로 고칩니다.
 
-> **팁:** 일치하는 **BEGIN** 및 **END** 주석과 같은 들여쓰기 수준에 코드를 붙여넣습니다. 블록이 정렬되지 않으면 붙여넣은 줄을 선택하고 **Tab** 또는 **Shift+Tab**을 사용하여 전체 블록을 오른쪽이나 왼쪽으로 이동합니다.
+> **팁:** 코드 들여쓰기를 올바르게 유지하려면 코드를 왼쪽 여백의 첫 번째 열에 맞춰 붙여넣습니다. 붙여넣은 줄 전체를 선택하고 **Tab**을 눌러 **BEGIN / END** 표시와 정렬합니다. 필요하면 **Shift+Tab**을 눌러 들여쓰기를 줄입니다.
 
 1. **# BEGIN CONNECTION CODE SECTION** 주석을 찾고 그 아래에 다음 코드를 추가합니다. 코드 들여쓰기가 올바른지 확인합니다.
 
@@ -312,7 +310,7 @@ lab:
 
     **Bash**
     ```bash
-    source .venv/Scripts/activate
+    source .venv/bin/activate
     ```
 
     **PowerShell**

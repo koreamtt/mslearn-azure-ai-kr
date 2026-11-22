@@ -94,7 +94,7 @@ lab:
 
 1. VS Code에서 *client/vector_functions.py* 파일을 엽니다.
 
-    > **Tip:** 일치하는 **BEGIN** 및 **END** 주석과 들여쓰기 수준이 같도록 코드를 붙여 넣습니다. 코드 블록의 정렬이 맞지 않으면 붙여 넣은 줄을 선택하고 **Tab** 또는 **Shift+Tab**을 사용하여 블록 전체를 오른쪽이나 왼쪽으로 이동합니다.
+    > **팁:** 코드 들여쓰기를 올바르게 유지하려면 코드를 왼쪽 여백의 첫 번째 열에 맞춰 붙여넣습니다. 붙여넣은 줄 전체를 선택하고 **Tab**을 눌러 **BEGIN / END** 표시와 정렬합니다. 필요하면 **Shift+Tab**을 눌러 들여쓰기를 줄입니다.
 
 1. **BEGIN STORE VECTOR DOCUMENT FUNCTION** 주석을 검색하고 주석 바로 뒤에 다음 코드를 추가합니다. 이 함수는 유사성 검색에 사용할 벡터 임베딩과 함께 지원 티켓을 저장합니다.
 
@@ -378,7 +378,7 @@ lab:
 
     **Bash**
     ```bash
-    source .venv/Scripts/activate
+    source .venv/bin/activate
     ```
 
     **PowerShell**

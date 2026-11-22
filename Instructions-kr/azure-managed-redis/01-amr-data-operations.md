@@ -95,13 +95,11 @@ lab:
 
 1. 코드 추가를 시작하려면 *main.py* 파일을 엽니다.
 
->**참고:** 애플리케이션에 추가하는 코드 블록은 해당 코드 섹션의 주석과 들여쓰기가 일치해야 합니다.
-
 ### 클라이언트 연결 추가
 
 이 섹션에서는 redis-py 라이브러리를 사용하여 Azure Managed Redis에 연결하는 코드를 추가합니다. 이 코드는 환경 변수에서 Redis 엔드포인트를 읽고 **redis-entraid** 자격 증명 공급자를 통해 **DefaultAzureCredential**을 사용하므로 클라이언트가 Microsoft Entra ID로 인증하고 토큰을 자동으로 새로 고칩니다.
 
-> **팁:** 일치하는 **BEGIN** 및 **END** 주석과 같은 들여쓰기 수준에 코드를 붙여넣습니다. 블록이 정렬되지 않으면 붙여넣은 줄을 선택하고 **Tab** 또는 **Shift+Tab**을 사용하여 전체 블록을 오른쪽이나 왼쪽으로 이동합니다.
+> **팁:** 코드 들여쓰기를 올바르게 유지하려면 코드를 왼쪽 여백의 첫 번째 열에 맞춰 붙여넣습니다. 붙여넣은 줄 전체를 선택하고 **Tab**을 눌러 **BEGIN / END** 표시와 정렬합니다. 필요하면 **Shift+Tab**을 눌러 들여쓰기를 줄입니다.
 
 1. **# BEGIN CONNECTION CODE SECTION** 주석을 찾고 그 아래에 다음 코드를 추가합니다. 코드 들여쓰기가 올바른지 확인합니다.
 
@@ -246,7 +244,7 @@ lab:
 
     **Bash**
     ```bash
-    source .venv/Scripts/activate
+    source .venv/bin/activate
     ```
 
     **PowerShell**

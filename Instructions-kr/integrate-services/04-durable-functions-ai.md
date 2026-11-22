@@ -68,7 +68,7 @@ Durable Functions는 오케스트레이션 기록과 상태를 저장하기 위�
 
 1. Visual Studio Code 탐색기 사이드바에서 *function_app.py*를 엽니다.
 
->**참고:** 각 코드 블록은 일치하는 BEGIN 및 END 주석 사이에 추가합니다. 일부 블록은 기존 함수 안에 있으므로 들여쓰기를 네 칸 유지해야 합니다.
+> **팁:** 코드 들여쓰기를 올바르게 유지하려면 코드를 왼쪽 여백의 첫 번째 열에 맞춰 붙여넣습니다. 붙여넣은 줄 전체를 선택하고 **Tab**을 눌러 **BEGIN / END** 표시와 정렬합니다. 필요하면 **Shift+Tab**을 눌러 들여쓰기를 줄입니다.
 
 ### 멱등성 결과 저장 추가
 
@@ -283,7 +283,7 @@ Durable Functions는 오케스트레이션 기록과 상태를 저장하기 위�
 
     **Bash**
     ```bash
-    source .venv/Scripts/activate
+    source .venv/bin/activate
     ```
 
     **PowerShell**

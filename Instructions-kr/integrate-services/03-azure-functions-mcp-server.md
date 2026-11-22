@@ -197,7 +197,7 @@ Model Context Protocol(MCP)은 AI 에이전트와 언어 모델이 외부 도구
 
     **Bash**
     ```bash
-    source .venv/Scripts/activate
+    source .venv/bin/activate
     ```
 
     **PowerShell**
@@ -293,7 +293,7 @@ Model Context Protocol(MCP)은 AI 에이전트와 언어 모델이 외부 도구
     ```
 
     ```prompt
-    다음 텍스트는 청구서, 계약서, 메모 중 무엇인가요?
+    다음 텍스트는 invoice(청구서), contract(계약서), memo(메모) 중 무엇인가요?
     '2026년 1월에 제공된 서비스에 대한 청구서 B1234. 총 지불 금액: 5,000달러.'
     ```
 
