@@ -28,7 +28,7 @@ Azure Web PubSub는 지속적인 클라이언트 연결을 관리하므로 백�
 
 ## 시작하기 전에
 
-이 섹션에서는 리소스를 프로비전하고 로컬 앱을 실행하는 데 필요한 도구와 권한을 확인합니다.
+이 섹션에서는 리소스를 프로비저닝하고 로컬 앱을 실행하는 데 필요한 도구와 권한을 확인합니다.
 
 실습을 완료하려면 다음이 필요합니다.
 
@@ -38,7 +38,7 @@ Azure Web PubSub는 지속적인 클라이언트 연결을 관리하므로 백�
 - 최신 [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli). 이후 단계에서 **webpubsub** 확장을 설치하거나 업그레이드합니다.
 - **선택 사항:** Python 코드의 서식 지정 및 린팅을 위한 [Visual Studio Code용 Ruff 확장](https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff).
 
-배포에는 Web PubSub **Standard_S1** 계층과 **Standard_LRS** 스토리지 계정을 사용합니다. 프로비전된 동안 요금이 발생합니다. [Azure Web PubSub 가격](https://azure.microsoft.com/pricing/details/web-pubsub/)을 검토하고 실습을 완료하면 리소스를 삭제합니다.
+배포에는 Web PubSub **Standard_S1** 계층과 **Standard_LRS** 스토리지 계정을 사용합니다. 프로비저닝된 동안 요금이 발생합니다. [Azure Web PubSub 가격](https://azure.microsoft.com/pricing/details/web-pubsub/)을 검토하고 실습을 완료하면 리소스를 삭제합니다.
 
 ## 프로젝트 시작 파일 다운로드 및 Azure Web PubSub 배포
 
@@ -78,13 +78,13 @@ Azure Web PubSub는 지속적인 클라이언트 연결을 관리하므로 백�
     az provider register --namespace Microsoft.Storage --wait
     ```
 
-1. 다음 명령을 실행하여 **Web PubSub CLI 확장을 설치하거나 업그레이드**합니다. 배포 스크립트는 이 확장을 사용하여 Azure Web PubSub를 프로비전합니다.
+1. 다음 명령을 실행하여 **Web PubSub CLI 확장을 설치하거나 업그레이드**합니다. 배포 스크립트는 이 확장을 사용하여 Azure Web PubSub를 프로비저닝합니다.
 
     ```
     az extension add --upgrade --name webpubsub
     ```
 
-1. 다음 명령을 실행하여 **배포 스크립트를 시작**합니다. 스크립트는 실습 리소스를 필요한 순서대로 프로비전하는 메뉴를 제공합니다.
+1. 다음 명령을 실행하여 **배포 스크립트를 시작**합니다. 스크립트는 실습 리소스를 필요한 순서대로 프로비저닝하는 메뉴를 제공합니다.
 
     ```
     python azdeploy.py

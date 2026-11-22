@@ -13,24 +13,24 @@ lab:
 
 # ACR Tasks를 사용하여 컨테이너 이미지를 빌드하고 실행하기
 
-이 연습에서는 Azure Container Registry(ACR) Tasks를 사용하여 로컬 Docker 설치 없이 클라우드에서 컨테이너 이미지를 빌드하고 관리합니다.
+이 실습에서는 Azure Container Registry(ACR) Tasks를 사용하여 로컬 Docker 설치 없이 클라우드에서 컨테이너 이미지를 빌드하고 관리합니다.
 
-이 연습에서 수행하는 작업:
+이 실습에서 수행하는 작업:
 
 - 프로젝트 시작 파일 다운로드
 - Azure Container Registry 배포
 - ACR Tasks를 사용하여 컨테이너 이미지 빌드 및 확인
 - 이미지 버전 관리 및 프로덕션 이미지 보호
 
-이 연습을 완료하는 데 약 **30**분이 걸립니다.
+이 실습을 완료하는 데 약 **30**분이 걸립니다.
 
->**Important:** Azure 무료 크레딧에서는 Azure Container Registry 작업 실행이 일시적으로 중단되었습니다. 이 연습에는 종량제 또는 다른 유료 플랜이 필요합니다.
+>**중요:** Azure 무료 크레딧에서는 Azure Container Registry 작업 실행이 일시적으로 중단되었습니다. 이 실습에는 종량제 또는 다른 유료 플랜이 필요합니다.
 
 ## 시작하기 전에
 
-이 연습을 완료하려면 다음이 필요합니다.
+이 실습을 완료하려면 다음이 필요합니다.
 
-- 필요한 Azure 서비스를 프로비전할 권한과 할당량이 있는 [Azure 구독](https://azure.microsoft.com/)
+- 필요한 Azure 서비스를 프로비저닝할 권한과 할당량이 있는 [Azure 구독](https://azure.microsoft.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)를 [지원되는 플랫폼](https://code.visualstudio.com/docs/supporting/requirements#_platforms) 중 하나에 설치합니다.
 - 최신 버전의 [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli)
 - [Python 3.12](https://www.python.org/downloads/) 이상
@@ -49,7 +49,7 @@ lab:
 
 1. Visual Studio Code(VS Code)를 시작하고 메뉴에서 **File > Open Folder...**를 선택한 다음 프로젝트 파일이 있는 폴더를 선택합니다.
 
-1. *azdeploy.py* 배포 스크립트를 열고 스크립트 맨 위의 두 값을 필요에 맞게 변경한 다음 저장합니다. **참고:** 스크립트의 다른 내용은 변경하지 마세요.
+1. *azdeploy.py* 배포 스크립트를 열고 스크립트 맨 위의 두 값을 필요에 맞게 변경한 다음 저장합니다. **참고:** 스크립트의 다른 내용은 변경하지 않습니다.
 
     ```
     "<your-resource-group-name>" # Resource Group name
@@ -58,7 +58,7 @@ lab:
 
 1. 메뉴 모음에서 **Terminal > New Terminal**을 선택하여 VS Code에서 터미널 창을 엽니다.
 
-1. 다음 명령을 실행하여 Azure 계정에 로그인합니다. 메시지가 표시되면 이 연습에 사용할 Azure 계정과 구독을 선택합니다.
+1. 다음 명령을 실행하여 Azure 계정에 로그인합니다. 메시지가 표시되면 이 실습에 사용할 Azure 계정과 구독을 선택합니다.
 
     ```
     az login
@@ -70,7 +70,7 @@ lab:
     az provider register --namespace Microsoft.ContainerRegistry
     ```
 
-1. 프로젝트의 루트 디렉터리에 있는지 확인한 다음 터미널에서 다음 명령을 실행하여 배포 스크립트를 시작합니다. 배포 스크립트는 ACR을 배포하고 연습에 필요한 환경 변수 파일을 만듭니다.
+1. 프로젝트의 루트 디렉터리에 있는지 확인한 다음 터미널에서 다음 명령을 실행하여 배포 스크립트를 시작합니다. 배포 스크립트는 ACR을 배포하고 실습에 필요한 환경 변수 파일을 만듭니다.
 
     ```
     python azdeploy.py
@@ -318,7 +318,7 @@ lab:
 
 ## 리소스 정리
 
-연습을 마쳤으므로 불필요한 리소스 사용을 방지하기 위해 만든 클라우드 리소스를 삭제해야 합니다.
+실습을 마쳤으므로 불필요한 리소스 사용을 방지하기 위해 만든 클라우드 리소스를 삭제해야 합니다.
 
 1. VS Code 터미널에서 다음 명령을 실행하여 리소스 그룹과 그룹 내 모든 리소스를 삭제합니다. **\<rg-name>**을 앞서 선택한 이름으로 바꿉니다. 이 명령은 Azure에서 리소스 그룹 삭제를 백그라운드 작업으로 시작합니다.
 
@@ -326,11 +326,11 @@ lab:
     az group delete --name <rg-name> --no-wait --yes
     ```
 
-> **CAUTION:** 리소스 그룹을 삭제하면 그룹에 포함된 모든 리소스가 삭제됩니다. 이 연습 범위에 속하지 않는 기존 리소스가 있는 리소스 그룹을 선택했다면 해당 리소스도 삭제됩니다.
+> **주의:** 리소스 그룹을 삭제하면 그룹에 포함된 모든 리소스가 삭제됩니다. 이 실습 범위에 속하지 않는 기존 리소스가 있는 리소스 그룹을 선택했다면 해당 리소스도 삭제됩니다.
 
 ## 문제 해결
 
-연습을 진행하는 동안 문제가 발생하면 다음 문제 해결 단계를 시도합니다.
+실습을 진행하는 동안 문제가 발생하면 다음 문제 해결 단계를 시도합니다.
 
 **Azure 인증 및 환경 변수 확인**
 - **az account show**를 실행하여 올바른 Azure 구독에 로그인했는지 확인합니다.

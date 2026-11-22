@@ -9,9 +9,9 @@ lab:
 
 # 로컬 모델 제공 사이드카를 사용하여 AI API 배포
 
-이 연습에서는 Python 채팅 API를 기본 App Service 컨테이너로 배포하고 로컬 모델 서버를 사이드카로 배포합니다. 배포 스크립트는 두 이미지를 Azure Container Registry에서 빌드합니다. 별도의 Flask 클라이언트는 개발 컴퓨터에서 실행되어 공개 채팅 API를 호출합니다. 관리 ID 이미지 가져오기, `localhost` 통신, 공유 임시 볼륨 및 컨테이너별 진단을 구성합니다.
+이 실습에서는 Python 채팅 API를 기본 App Service 컨테이너로 배포하고 로컬 모델 서버를 사이드카로 배포합니다. 배포 스크립트는 두 이미지를 Azure Container Registry에서 빌드합니다. 별도의 Flask 클라이언트는 개발 컴퓨터에서 실행되어 공개 채팅 API를 호출합니다. 관리 ID 이미지 가져오기, `localhost` 통신, 공유 임시 볼륨 및 컨테이너별 진단을 구성합니다.
 
-이 연습에서 수행하는 작업:
+이 실습에서 수행하는 작업:
 
 - 프로젝트 시작 파일 다운로드
 - Azure Container Registry를 배포하고 ACR Tasks를 사용하여 채팅 API 및 모델 서버 이미지 빌드
@@ -21,13 +21,13 @@ lab:
 - 로컬 Flask 클라이언트용 Python 환경 구성
 - 채팅 클라이언트를 실행하고 엔드투엔드 모델 추론 테스트
 
-이 연습을 완료하는 데 약 **30**분이 걸립니다.
+이 실습을 완료하는 데 약 **30**분이 걸립니다.
 
 ## 시작하기 전에
 
-이 연습을 완료하려면 다음이 필요합니다.
+이 실습을 완료하려면 다음이 필요합니다.
 
-- 필요한 Azure 서비스를 프로비전할 권한과 할당량이 있는 [Azure 구독](https://azure.microsoft.com/)
+- 필요한 Azure 서비스를 프로비저닝할 권한과 할당량이 있는 [Azure 구독](https://azure.microsoft.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)를 [지원되는 플랫폼](https://code.visualstudio.com/docs/supporting/requirements#_platforms) 중 하나에 설치합니다.
 - 최신 버전의 [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli)
 - [Python 3.12](https://www.python.org/downloads/) 이상
@@ -46,24 +46,24 @@ lab:
 
 1. 압축을 푼 폴더를 Visual Studio Code에서 엽니다.
 
-1. *azdeploy.py* 배포 스크립트를 열고 스크립트 맨 위의 두 값을 필요에 맞게 변경한 다음 저장합니다. **참고:** 스크립트의 다른 내용은 변경하지 마세요.
+1. *azdeploy.py* 배포 스크립트를 열고 스크립트 맨 위의 두 값을 필요에 맞게 변경한 다음 저장합니다. **참고:** 스크립트의 다른 내용은 변경하지 않습니다.
 
 1. Visual Studio Code에서 새 터미널을 엽니다.
 
-1. 다음 명령을 실행하여 Azure에 로그인합니다. 이 명령은 Azure CLI를 인증하고 연습 리소스를 만들 구독을 선택할 수 있게 합니다.
+1. 다음 명령을 실행하여 Azure에 로그인합니다. 이 명령은 Azure CLI를 인증하고 실습 리소스를 만들 구독을 선택할 수 있게 합니다.
 
     ```
     az login
     ```
 
-1. 다음 명령을 실행하여 연습에서 사용하는 Azure 리소스 공급자를 등록합니다. 등록하면 구독에서 Azure Container Registry 및 App Service 리소스를 만들 수 있습니다.
+1. 다음 명령을 실행하여 실습에서 사용하는 Azure 리소스 공급자를 등록합니다. 등록하면 구독에서 Azure Container Registry 및 App Service 리소스를 만들 수 있습니다.
 
     ```
     az provider register --namespace Microsoft.ContainerRegistry
     az provider register --namespace Microsoft.Web
     ```
 
-1. 다음 명령을 실행하여 배포 스크립트를 시작합니다. 스크립트는 필요한 순서로 연습 리소스를 프로비전하는 메뉴를 제공합니다.
+1. 다음 명령을 실행하여 배포 스크립트를 시작합니다. 스크립트는 필요한 순서로 실습 리소스를 프로비저닝하는 메뉴를 제공합니다.
 
     ```
     python azdeploy.py
@@ -269,7 +269,7 @@ App Service는 모든 sitecontainer 간에 **/home** 볼륨을 자동으로 공�
 
 ## 리소스 정리
 
-연습을 마쳤으므로 불필요한 리소스 사용을 방지하기 위해 만든 클라우드 리소스를 삭제해야 합니다.
+실습을 마쳤으므로 불필요한 리소스 사용을 방지하기 위해 만든 클라우드 리소스를 삭제해야 합니다.
 
 1. VS Code 터미널에서 다음 명령을 실행하여 리소스 그룹과 그룹 내 모든 리소스를 삭제합니다. **\<rg-name>**을 앞서 선택한 이름으로 바꿉니다. 이 명령은 Azure에서 리소스 그룹 삭제를 백그라운드 작업으로 시작합니다.
 
@@ -277,11 +277,11 @@ App Service는 모든 sitecontainer 간에 **/home** 볼륨을 자동으로 공�
     az group delete --name <rg-name> --no-wait --yes
     ```
 
-> **CAUTION:** 리소스 그룹을 삭제하면 그룹에 포함된 모든 리소스가 삭제됩니다. 이 연습 범위에 속하지 않는 기존 리소스가 있는 리소스 그룹을 선택했다면 해당 리소스도 삭제됩니다.
+> **주의:** 리소스 그룹을 삭제하면 그룹에 포함된 모든 리소스가 삭제됩니다. 이 실습 범위에 속하지 않는 기존 리소스가 있는 리소스 그룹을 선택했다면 해당 리소스도 삭제됩니다.
 
 ## 문제 해결
 
-연습을 진행하는 동안 문제가 발생하면 다음 문제 해결 단계를 시도합니다.
+실습을 진행하는 동안 문제가 발생하면 다음 문제 해결 단계를 시도합니다.
 
 **리소스 배포 확인**
 - [Azure portal](https://portal.azure.com)로 이동하여 리소스 그룹을 찾습니다.

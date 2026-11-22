@@ -75,7 +75,7 @@ lab:
     az provider register --namespace Microsoft.DocumentDB
     ```
 
-1. 다음 명령을 실행하여 **배포 스크립트를 시작**합니다. 스크립트는 실습 리소스를 필요한 순서대로 프로비전하는 메뉴를 제공합니다.
+1. 다음 명령을 실행하여 **배포 스크립트를 시작**합니다. 스크립트는 실습 리소스를 필요한 순서대로 프로비저닝하는 메뉴를 제공합니다.
 
     ```
     python azdeploy.py
@@ -350,15 +350,15 @@ lab:
 
 1. 브라우저를 열고 `http://localhost:5000`으로 이동하여 앱에 액세스합니다.
 
-1. **1. Store Conversation Turns(대화 턴 저장)**를 선택합니다. 오른쪽 패널에 세 개의 고정된 턴 ID가 저장된 것으로 표시되고 총 RU 비용이 보고되는지 확인합니다. 첫 번째 턴은 SDK 시간 초과 스레드에 속하고 나머지 두 턴은 활성 모델 엔드포인트 스레드에 속합니다.
+1. **대화 턴 저장(1. Store Conversation Turns)**을 선택합니다. 오른쪽 패널에 세 개의 고정된 턴 ID가 저장된 것으로 표시되고 총 RU 비용이 보고되는지 확인합니다. 첫 번째 턴은 SDK 시간 초과 스레드에 속하고 나머지 두 턴은 활성 모델 엔드포인트 스레드에 속합니다.
 
-1. **2. Store Durable Preference(장기 보존 선호 저장)**를 선택합니다. 결과에 Python 코딩 선호가 **TTL -1**과 함께 표시되고 출처 턴이 **turn-request-1001**로 나타나는지 확인합니다. -1은 선호가 컨테이너의 30일 만료 설정을 상속하지 않도록 합니다.
+1. **장기 보존 선호 저장(2. Store Durable Preference)**을 선택합니다. 결과에 Python 코딩 선호가 **TTL -1**과 함께 표시되고 출처 턴이 **turn-request-1001**로 나타나는지 확인합니다. -1은 선호가 컨테이너의 30일 만료 설정을 상속하지 않도록 합니다.
 
-1. **3. Retrieve Active Thread(활성 스레드 검색)**를 선택합니다. 결과에 **turn-request-2001**, **turn-request-2002**가 이 순서대로 포함되는지 확인합니다. 쿼리는 활성 스레드의 완전한 계층적 파티션 키를 대상으로 하므로 관련 없는 **turn-request-1001** 항목은 나타나지 않아야 합니다.
+1. **활성 스레드 검색(3. Retrieve Active Thread)**을 선택합니다. 결과에 **turn-request-2001**, **turn-request-2002**가 이 순서대로 포함되는지 확인합니다. 쿼리는 활성 스레드의 완전한 계층적 파티션 키를 대상으로 하므로 관련 없는 **turn-request-1001** 항목은 나타나지 않아야 합니다.
 
-1. **4. Retrieve Durable Memory(장기 보존 메모리 검색)**를 선택합니다. 결과에 **codeLanguage: Python** 선호가 포함되고 출처가 **turn-request-1001**로 표시되는지 확인합니다.
+1. **장기 보존 메모리 검색(4. Retrieve Durable Memory)**을 선택합니다. 결과에 **codeLanguage: Python** 선호가 포함되고 출처가 **turn-request-1001**로 표시되는지 확인합니다.
 
-1. **5. Build Agent Context(에이전트 컨텍스트 구성)**를 선택합니다. JSON 결과를 검토하고 다음을 확인합니다.
+1. **에이전트 컨텍스트 구성(5. Build Agent Context)**을 선택합니다. JSON 결과를 검토하고 다음을 확인합니다.
 
     - 메모리를 과거 데이터로 취급하는 안전 지침이 포함됩니다.
     - **recentConversation**에 활성 스레드의 두 턴이 포함됩니다.

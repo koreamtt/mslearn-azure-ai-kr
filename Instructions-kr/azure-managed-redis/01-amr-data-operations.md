@@ -28,7 +28,7 @@ lab:
 
 실습을 완료하려면 다음이 필요합니다.
 
-- 필요한 Azure 서비스를 프로비전할 권한과 할당량이 있는 [Azure 구독](https://azure.microsoft.com/)
+- 필요한 Azure 서비스를 프로비저닝할 권한과 할당량이 있는 [Azure 구독](https://azure.microsoft.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)를 [지원되는 플랫폼](https://code.visualstudio.com/docs/supporting/requirements#_platforms) 중 하나에 설치
 - [Python 3.12](https://www.python.org/downloads/) 이상
 - 최신 버전의 [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli)
@@ -37,7 +37,7 @@ lab:
 
 ## 프로젝트 시작 파일 다운로드 및 Azure Managed Redis 배포
 
-이 섹션에서는 콘솔 앱의 시작 파일을 다운로드하고 스크립트를 사용하여 구독에 Azure Managed Redis를 배포합니다. 배포에는 5~10분이 걸리므로 먼저 배포를 시작한 다음 프로비전이 진행되는 동안 앱 코드를 완성합니다.
+이 섹션에서는 콘솔 앱의 시작 파일을 다운로드하고 스크립트를 사용하여 구독에 Azure Managed Redis를 배포합니다. 배포에는 5~10분이 걸리므로 먼저 배포를 시작한 다음 프로비저닝이 진행되는 동안 앱 코드를 완성합니다.
 
 1. 브라우저를 열고 다음 URL을 입력하여 시작 파일을 다운로드합니다. 파일은 기본 다운로드 위치에 저장됩니다.
 
@@ -49,7 +49,7 @@ lab:
 
 1. Visual Studio Code(VS Code)를 시작하고 메뉴에서 **파일(File) > 폴더 열기...(Open Folder...)**를 선택한 다음 프로젝트 파일이 있는 폴더를 선택합니다.
 
-1. *azdeploy.py* 배포 스크립트를 열고 스크립트 맨 위의 두 값을 필요에 맞게 변경한 다음 변경 내용을 저장합니다. **참고:** 스크립트의 다른 내용은 변경하지 마세요.
+1. *azdeploy.py* 배포 스크립트를 열고 스크립트 맨 위의 두 값을 필요에 맞게 변경한 다음 변경 내용을 저장합니다. **참고:** 스크립트의 다른 내용은 변경하지 않습니다.
 
     ```
     "<your-resource-group-name>" # Resource Group name
@@ -86,7 +86,7 @@ lab:
 
     이 옵션은 리소스 그룹이 아직 없는 경우 만들고 Azure Managed Redis를 배포합니다. 스크립트는 배포가 완료될 때까지 기다린 다음 터미널에 결과를 표시합니다.
 
-1. 배포 스크립트를 계속 실행한 채 다음 섹션으로 이동하여 Azure Managed Redis가 프로비전되는 동안 앱 코드를 완성합니다. 터미널에서 완료 또는 오류 메시지가 표시되는지 주기적으로 확인합니다.
+1. 배포 스크립트를 계속 실행한 채 다음 섹션으로 이동하여 Azure Managed Redis가 프로비저닝되는 동안 앱 코드를 완성합니다. 터미널에서 완료 또는 오류 메시지가 표시되는지 주기적으로 확인합니다.
 
 
 ## 앱 완성

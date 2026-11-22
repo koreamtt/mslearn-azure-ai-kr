@@ -30,7 +30,7 @@ lab:
 
 실습을 완료하려면 다음이 필요합니다.
 
-- 필요한 Azure 서비스를 프로비전할 권한과 할당량이 있는 [Azure 구독](https://azure.microsoft.com/)
+- 필요한 Azure 서비스를 프로비저닝할 권한과 할당량이 있는 [Azure 구독](https://azure.microsoft.com/)
 - [Visual Studio Code](https://code.visualstudio.com/)를 [지원되는 플랫폼](https://code.visualstudio.com/docs/supporting/requirements#_platforms) 중 하나에서 사용합니다.
 - 최신 버전의 [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli)
 - [Python 3.12](https://www.python.org/downloads/) 이상
@@ -51,14 +51,14 @@ lab:
 
 1. Visual Studio Code(VS Code)를 시작하고 메뉴에서 **File > Open Folder...**를 선택한 다음 프로젝트 파일이 있는 폴더를 선택합니다.
 
-1. *azdeploy.py* 배포 스크립트를 열고 스크립트 맨 위에 있는 두 값을 필요에 맞게 변경한 다음 변경 내용을 저장합니다. **참고:** 스크립트의 다른 부분은 변경하지 마세요.
+1. *azdeploy.py* 배포 스크립트를 열고 스크립트 맨 위에 있는 두 값을 필요에 맞게 변경한 다음 변경 내용을 저장합니다. **참고:** 스크립트의 다른 부분은 변경하지 않습니다.
 
     ```
     "<your-resource-group-name>" # Resource Group name
     "<your-azure-region>" # Azure region for the resources
     ```
 
-1. 메뉴 모음에서 **Terminal(터미널) > New Terminal(새 터미널)**을 선택하여 VS Code에서 터미널 창을 엽니다.
+1. 메뉴 모음에서 **터미널(Terminal) > 새 터미널(New Terminal)**을 선택하여 VS Code에서 터미널 창을 엽니다.
 
 1. 다음 명령을 실행하여 Azure 계정에 로그인합니다. 프롬프트에 따라 실습에 사용할 Azure 계정과 구독을 선택합니다.
 
@@ -82,13 +82,13 @@ lab:
     python azdeploy.py
     ```
 
-1. 스크립트 메뉴가 나타나면 **1**을 입력하여 **Create PostgreSQL server with Entra authentication(Entra 인증으로 PostgreSQL 서버 만들기)** 옵션을 실행합니다. 이 옵션은 Entra 전용 인증이 사용하도록 설정된 서버를 만듭니다. **참고:** 배포를 완료하는 데 5~10분 정도 걸릴 수 있습니다.
+1. 스크립트 메뉴가 나타나면 **1**을 입력하여 **Entra 인증으로 PostgreSQL 서버 만들기(Create PostgreSQL server with Entra authentication)** 옵션을 실행합니다. 이 옵션은 Entra 전용 인증이 사용하도록 설정된 서버를 만듭니다. **참고:** 배포를 완료하는 데 5~10분 정도 걸릴 수 있습니다.
 
     >**중요:** 실습이 끝날 때까지 배포를 실행하는 터미널을 열어 둡니다. 터미널에서 배포가 계속되는 동안 실습의 다음 섹션으로 이동할 수 있습니다.
 
 ## 클라이언트 애플리케이션 완성
 
-이 섹션에서는 PostgreSQL 데이터베이스와 상호 작용하는 경로 처리기를 추가하여 *app.py* 파일을 완성합니다. 이 경로는 샘플 제품 로드, 유사도 검색 수행, 새 제품 추가를 처리합니다. Flask 애플리케이션은 벡터 유사도 검색을 테스트하기 위한 웹 인터페이스를 제공합니다.
+이 섹션에서는 PostgreSQL 데이터베이스와 상호 작용하는 라우트 처리 함수를 추가하여 *app.py* 파일을 완성합니다. 각 함수는 샘플 제품 로드, 유사도 검색 수행, 새 제품 추가를 처리합니다. Flask 애플리케이션은 벡터 유사도 검색을 테스트하기 위한 웹 인터페이스를 제공합니다.
 
 1. VS Code에서 *client/app.py* 파일을 엽니다.
 
@@ -247,11 +247,11 @@ lab:
 
 1. 터미널에 PostgreSQL 서버 배포가 완료되었다고 표시될 때까지 기다립니다.
 
-1. 배포 스크립트 메뉴에서 **2**를 입력하여 **Configure vector extension allow-list(벡터 확장 허용 목록 구성)** 옵션을 실행합니다. 이 옵션은 서버의 **azure.extensions** 허용 목록에 **vector** 확장을 추가하므로 다음 섹션에서 pgvector를 사용하도록 설정할 수 있습니다. 변경 내용을 적용하기 위해 서버가 다시 시작됩니다. **참고:** 다시 시작하는 데 1~2분 정도 걸릴 수 있습니다.
+1. 배포 스크립트 메뉴에서 **2**를 입력하여 **벡터 확장 허용 목록 구성(Configure vector extension allow-list)** 옵션을 실행합니다. 이 옵션은 서버의 **azure.extensions** 허용 목록에 **vector** 확장을 추가하므로 다음 섹션에서 pgvector를 사용하도록 설정할 수 있습니다. 변경 내용을 적용하기 위해 서버가 다시 시작됩니다. **참고:** 다시 시작하는 데 1~2분 정도 걸릴 수 있습니다.
 
-1. **3**을 입력하여 **Check deployment status(배포 상태 확인)** 옵션을 실행합니다. 이 옵션은 서버가 준비되었는지 확인합니다.
+1. **3**을 입력하여 **배포 상태 확인(Check deployment status)** 옵션을 실행합니다. 이 옵션은 서버가 준비되었는지 확인합니다.
 
-1. **4**를 입력하여 **Retrieve connection info and access token(연결 정보 및 액세스 토큰 검색)** 옵션을 실행합니다. 이 옵션은 필요한 환경 변수가 포함된 파일을 만듭니다.
+1. **4**를 입력하여 **연결 정보 및 액세스 토큰 검색(Retrieve connection info and access token)** 옵션을 실행합니다. 이 옵션은 필요한 환경 변수가 포함된 파일을 만듭니다.
 
 1. **5**를 입력하여 배포 스크립트를 종료합니다.
 
@@ -363,11 +363,11 @@ lab:
 
 이 섹션에서는 웹 애플리케이션을 사용하여 샘플 제품을 데이터베이스에 로드하고 유사도 검색을 수행합니다. 제품에는 각 제품의 의미를 나타내는 사전 계산 임베딩이 포함되어 있어 설명을 기반으로 유사한 항목을 찾을 수 있습니다.
 
-1. 웹 페이지에서 **Load Sample Products(샘플 제품 로드)**를 선택합니다. 임베딩이 포함된 제품 10개가 데이터베이스에 삽입됩니다.
+1. 웹 페이지에서 **샘플 제품 로드(Load Sample Products)**를 선택합니다. 임베딩이 포함된 제품 10개가 데이터베이스에 삽입됩니다.
 
     성공 메시지가 표시되고 제품 목록에 "Wireless Bluetooth Headphones", "Gaming Laptop", "Running Shoes"와 같은 항목이 나타납니다.
 
-1. **Find Similar Products(유사 제품 찾기)** 섹션에서 드롭다운의 **Wireless Bluetooth Headphones**를 선택하고 **Find Similar(유사 항목 찾기)**를 선택합니다.
+1. **유사 제품 찾기(Find Similar Products)** 섹션에서 드롭다운의 **Wireless Bluetooth Headphones**를 선택하고 **유사 항목 찾기(Find Similar)**를 선택합니다.
 
     애플리케이션은 벡터 유사도를 사용하여 데이터베이스를 쿼리하고 선택한 항목과 의미상 가까운 순서로 제품을 반환합니다. 두 항목이 모두 오디오 장치이므로 결과 상단에 "Noise Cancelling Earbuds"가 표시되어야 합니다.
 
@@ -379,7 +379,7 @@ lab:
 
 1. Flask 애플리케이션이 열린 웹 브라우저로 돌아갑니다.
 
-1. **Add New Product(새 제품 추가)** 섹션에서 드롭다운의 **Espresso Machine**을 선택하고 **Add Product(제품 추가)**를 선택합니다.
+1. **새 제품 추가(Add New Product)** 섹션에서 드롭다운의 **Espresso Machine**을 선택하고 **제품 추가(Add Product)**를 선택합니다.
 
 1. 이제 **Find Similar Products** 드롭다운에서 **Coffee Maker**를 선택하고 **Find Similar**를 선택하여 유사 제품을 검색합니다.
 
