@@ -28,7 +28,9 @@ upstream은 소문자 `instructions`, 이 fork는 대문자 `Instructions`를 �
 - Microsoft 제품명과 공식 서비스 이름은 원문을 유지합니다.
 - 영어 UI를 사용하는 경우 처음 의미 있게 등장하는 주요 항목을 `한국어(English)` 형식으로 표기합니다.
 - YAML front matter의 키, `level`, `duration` 같은 구조 값은 유지하고 제목과 설명은 번역합니다.
-- 제목 수준, 번호 매기기, 목록, 표, 콜아웃 및 코드 블록 순서는 유지합니다.
+- 제목 수준, 번호 매기기, 목록, 표, 콜아웃 및 실행 단계의 순서는 유지합니다.
+- 같은 단계에 나란히 제시된 완전한 셸 예제와 셸별 목록은 사용자 요청에 따라 `PowerShell`, `Bash` 순서로 제공합니다. 명령 내용은 원문 그대로 유지하며, 이 순서 변경만 번역 계약의 예외로 허용합니다.
+- 번역본에만 추가된 Git Bash 전체 예제로 본문의 명령을 중복하지 않습니다. 검증된 호환성 보완은 해당 단계의 짧은 참고와 문제 해결 안내로 분리하고, 원문에 없는 보완임을 명시합니다.
 - 원문에 없는 절차를 추측하여 추가하지 않습니다.
 - 원문의 오류는 임의로 수정하지 않고 알려진 원문 문제에 기록합니다.
 
@@ -90,10 +92,12 @@ $previousCommit = "4bb868b5f05e233df0d0e2294dc75438038e1b6f"
 git fetch https://github.com/MicrosoftLearning/mslearn-azure-ai.git main
 $sourceCommit = git rev-parse FETCH_HEAD
 git diff "$($previousCommit):instructions" "$($sourceCommit):instructions"
-python .github\skills\mslearn-korean-localization\scripts\validate_translation.py --repo . --source Instructions --target Instructions-kr --readme Instructions-kr\README.md
+python .github\skills\mslearn-korean-localization\scripts\validate_translation.py --repo . --source Instructions --target Instructions-kr --readme Instructions-kr\README.md --powershell-first
 git diff --check
 git status --short
 ```
+
+이 저장소의 한국어판 검증에는 `--powershell-first`를 사용합니다. 이 옵션은 같은 단계의 인접한 셸 예제를 PowerShell 우선 순서로 비교하며, 명령 수정이나 다른 단계로의 이동을 허용하지 않습니다. 옵션을 생략하면 기존의 엄격한 원문 순서 검증이 유지되므로 현재 한국어판의 의도적인 셸 순서 변경이 오류로 보고됩니다.
 
 ## 동기화 상태
 
@@ -105,7 +109,7 @@ git status --short
 | 기준 upstream 커밋 | `4bb868b5f05e233df0d0e2294dc75438038e1b6f` |
 | 이전 번역 기준 커밋 | `af79d9a3fd8c972b1de35467d638344241a99420` |
 | 마지막 검토일 | `2026-11-22` |
-| 전체 상태 | 한국어 실습 29개 문장·용어 교정 및 검증 완료 |
+| 전체 상태 | 한국어 실습 29개 문장·용어 교정, PowerShell 우선 재배치 및 검증 완료 |
 | upstream 동기화 변경 | 기존 한국어 실습 21개 갱신, 6개 변경 없이 검토, 신규 실습 2개 번역 |
 | 한국어 교정 | 한국어 실습 29개 의미·문법·용어·문체·UI 병기 개선, 영문 원본 변경 없음 |
 | 영문 최신화 | 기존 영문 18개 갱신 및 신규 2개 추가, 모든 파일이 upstream 원문과 바이트 단위로 일치 |
@@ -159,7 +163,17 @@ git status --short
 - 번들 검증기: 29개 Markdown 파일 통과. 구조 검증은 문장의 자연스러움이나 의미 정확성을 자동으로 보장하지 않으므로 별도의 문맥 검토와 함께 사용합니다.
 - 기존 Markdown lint 경고는 유지했습니다. 커밋, 푸시 및 게시 작업은 수행하지 않았습니다.
 
-## 검증 결과
+## 셸 안내 정리 이력
+
+2026-11-22 사용자 요청에 따라 한국어 실습 29개의 완전한 인접 셸 예제와 셸별 문제 해결 목록을 PowerShell 우선으로 재배치했습니다. 20개 실습의 가상 환경 활성화 설명도 Windows·PowerShell을 먼저 언급하도록 정리했습니다.
+
+- ACR Tasks와 App Service 컨테이너 실습에 추가돼 있던 Git Bash 전체 예제 2개를 제거했습니다. 원문 Bash·PowerShell 명령은 유지하고, 경로 자동 변환 우회 방법은 문제 해결 안내로 옮겼습니다.
+- 번들 검증기에 선택형 `--powershell-first` 옵션을 추가했습니다. 기본 엄격 검증은 유지하며, 완전한 인접 셸 쌍 외의 이동이나 코드 내용 변경은 허용하지 않습니다.
+- 원문의 손상된 코드 블록, 코드 블록 내부의 셸 레이블 및 주석은 재배치하지 않습니다. Container Apps 관리 실습에서 닫히지 않은 PowerShell 블록이 다음 Bash 예제까지 포함하는 구간도 그대로 보존했습니다.
+- 검증: PowerShell 우선 옵션으로 실습 29개 통과. 셸 순서·줄바꿈·주석·중첩 코드·반복 적용 검사와 명령 변조·단계 이동 거부 검사를 통과했습니다.
+- 영문 원본, 클라이언트 코드, 배포 스크립트 및 환경 파일은 수정하지 않았습니다. 커밋, 푸시 및 게시 작업은 수행하지 않았습니다.
+
+## 동기화 당시 검증 결과
 
 2026-11-22 최신 upstream 동기화 및 검증 결과입니다. 이전 Pages 점검에서 보고된 21개 코드 블록 오류는 한국어판의 Bash 활성화 명령이 원문과 달랐기 때문입니다. 원문의 `source .venv/bin/activate`를 복원하고 Windows Git Bash용 설명은 유지했습니다.
 
@@ -182,7 +196,7 @@ git status --short
 - [x] 번호가 지정된 단계 구조가 유지되었는가?
 - [x] 이미지와 링크 대상 경로가 유지되었는가?
 - [x] 참조되는 이미지와 필수 자산이 한국어 디렉터리에 존재하는가?
-- [x] 원문의 코드 블록이 순서대로 보존되었는가?
+- [x] 원문의 코드 내용과 실행 단계가 보존되고, 승인된 인접 셸 쌍만 PowerShell 우선으로 배치되었는가?
 - [x] 영문과 한국어 프롬프트를 각각 복사할 수 있는가?
 - [x] 기술 식별자, 식 및 종속 데이터가 변경되지 않았는가?
 - [x] 기존 영문 원본과 관련 없는 파일이 변경되지 않았는가?

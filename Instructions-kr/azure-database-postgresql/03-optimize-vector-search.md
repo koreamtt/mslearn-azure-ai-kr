@@ -136,14 +136,14 @@ HNSW(Hierarchical Navigable Small World)는 다중 계층 그래프 구조를 �
 
 1. 다음 명령을 실행하여 이전 단계에서 만든 파일의 환경 변수를 터미널 세션에 로드합니다.
 
-    **Bash**
-    ```bash
-    source .env
-    ```
-
     **PowerShell**
     ```powershell
     . .\.env.ps1
+    ```
+
+    **Bash**
+    ```bash
+    source .env
     ```
 
     >**참고:** 터미널을 열어 둡니다. 터미널을 닫고 새 터미널을 만들면 환경 변수를 다시 로드하는 명령을 실행해야 할 수 있습니다.
@@ -156,14 +156,14 @@ HNSW(Hierarchical Navigable Small World)는 다중 계층 그래프 구조를 �
 
 1. 환경 변수를 사용하여 서버에 연결하려면 다음 명령을 실행합니다. 인증에는 **PGPASSWORD** 환경 변수가 자동으로 사용됩니다.
 
-    **Bash**
-    ```bash
-    psql "host=$DB_HOST port=5432 dbname=$DB_NAME user=$DB_USER sslmode=require"
-    ```
-
     **PowerShell**
     ```powershell
     psql "host=$env:DB_HOST port=5432 dbname=$env:DB_NAME user=$env:DB_USER sslmode=require"
+    ```
+
+    **Bash**
+    ```bash
+    psql "host=$DB_HOST port=5432 dbname=$DB_NAME user=$DB_USER sslmode=require"
     ```
 
     >**팁:** 쿼리 결과가 현재 터미널 창에 모두 표시되지 않으면 psql은 페이저를 사용합니다. 페이저가 표시되면 **q**를 눌러 페이저를 닫고 psql 프롬프트로 돌아갑니다. 터미널 창을 최대화하면 페이저가 나타나는 상황을 줄이고 명령 결과를 더 쉽게 검토할 수 있습니다.

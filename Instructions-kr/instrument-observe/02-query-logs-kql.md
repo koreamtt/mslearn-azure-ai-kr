@@ -98,14 +98,14 @@ Kusto 쿼리 언어(KQL)는 Application Insights에서 로그 데이터를 분�
 
 1. 이전 단계에서 만든 파일의 환경 변수를 터미널 세션에 로드하는 적절한 명령을 실행합니다.
 
-    **Bash**
-    ```bash
-    source .env
-    ```
-
     **PowerShell**
     ```powershell
     . .\.env.ps1
+    ```
+
+    **Bash**
+    ```bash
+    source .env
     ```
 
     >**참고:** 터미널을 열어 둡니다. 터미널을 닫고 새 터미널을 열면 환경 변수를 다시 로드하기 위해 이 명령을 다시 실행해야 합니다.
@@ -126,16 +126,16 @@ Kusto 쿼리 언어(KQL)는 Application Insights에서 로그 데이터를 분�
     python -m venv .venv
     ```
 
-1. 다음 명령을 실행하여 Python 환경을 활성화합니다. **참고:** Linux/macOS에서는 Bash 명령을 사용합니다. Windows에서는 PowerShell 명령을 사용합니다. Windows에서 Git Bash를 사용하는 경우 **source .venv/Scripts/activate**를 사용합니다.
-
-    **Bash**
-    ```bash
-    source .venv/bin/activate
-    ```
+1. 다음 명령을 실행하여 Python 환경을 활성화합니다. **참고:** Windows에서는 PowerShell 명령을 사용하고, Linux/macOS에서는 Bash 명령을 사용합니다. Windows에서 Git Bash를 사용하는 경우 **source .venv/Scripts/activate**를 사용합니다.
 
     **PowerShell**
     ```powershell
     .\.venv\Scripts\Activate.ps1
+    ```
+
+    **Bash**
+    ```bash
+    source .venv/bin/activate
     ```
 
 1. 다음 명령을 실행하여 종속성을 설치합니다.
@@ -234,17 +234,6 @@ Kusto 쿼리 언어(KQL)는 Application Insights에서 로그 데이터를 분�
 
 1. VS Code 터미널에서 다음 명령을 실행하여 이메일 알림이 포함된 작업 그룹을 만듭니다. **ALERT_EMAIL** 변수는 배포 스크립트의 **Retrieve connection info** 옵션을 실행할 때 Azure 계정에서 가져온 값으로 채워집니다.
 
-    **Bash**
-    ```bash
-    ACTION_GROUP_ID=$(az monitor action-group create \
-        --resource-group $RESOURCE_GROUP \
-        --name pipeline-alerts-ag \
-        --short-name PipeAlert \
-        --action email oncall-email $ALERT_EMAIL \
-        --query id \
-        --output tsv)
-    ```
-
     **PowerShell**
     ```powershell
     $ACTION_GROUP_ID = az monitor action-group create `
@@ -256,24 +245,20 @@ Kusto 쿼리 언어(KQL)는 Application Insights에서 로그 데이터를 분�
         --output tsv
     ```
 
+    **Bash**
+    ```bash
+    ACTION_GROUP_ID=$(az monitor action-group create \
+        --resource-group $RESOURCE_GROUP \
+        --name pipeline-alerts-ag \
+        --short-name PipeAlert \
+        --action email oncall-email $ALERT_EMAIL \
+        --query id \
+        --output tsv)
+    ```
+
     이 명령은 **pipeline-alerts-ag**라는 작업 그룹을 만들고 트리거 시 이메일 알림을 보낸 다음 해당 리소스 ID를 **ACTION_GROUP_ID** 변수에 저장합니다.
 
 1. 다음 명령을 실행하여 실패한 요청을 Application Insights 리소스에서 모니터링하는 로그 검색 경고 규칙을 만듭니다. 규칙은 5분 동안 쿼리를 평가하며 실패한 요청이 10개를 초과하면 경고를 발생시킵니다.
-
-    **Bash**
-    ```bash
-    az monitor scheduled-query create \
-        --resource-group $RESOURCE_GROUP \
-        --name high-failure-rate-alert \
-        --scopes $APPINSIGHTS_RESOURCE_ID \
-        --action-groups $ACTION_GROUP_ID \
-        --condition "count 'FailedRequests' > 10" \
-        --condition-query FailedRequests="requests | where success == false" \
-        --evaluation-frequency 5m \
-        --window-size 5m \
-        --severity 1 \
-        --description "Alert when more than 10 requests fail in a 5-minute window"
-    ```
 
     **PowerShell**
     ```powershell
@@ -290,18 +275,24 @@ Kusto 쿼리 언어(KQL)는 Application Insights에서 로그 데이터를 분�
         --description "Alert when more than 10 requests fail in a 5-minute window"
     ```
 
+    **Bash**
+    ```bash
+    az monitor scheduled-query create \
+        --resource-group $RESOURCE_GROUP \
+        --name high-failure-rate-alert \
+        --scopes $APPINSIGHTS_RESOURCE_ID \
+        --action-groups $ACTION_GROUP_ID \
+        --condition "count 'FailedRequests' > 10" \
+        --condition-query FailedRequests="requests | where success == false" \
+        --evaluation-frequency 5m \
+        --window-size 5m \
+        --severity 1 \
+        --description "Alert when more than 10 requests fail in a 5-minute window"
+    ```
+
     심각도는 1(Error)로 설정하여 중대한 문제이지만 서비스 중단 수준은 아님을 나타냅니다. 경고가 발생하면 작업 그룹이 트리거되어 이메일을 보냅니다.
 
 1. 다음 명령을 실행하여 경고 규칙이 만들어져 있고 사용하도록 설정되었는지 확인합니다.
-
-    **Bash**
-    ```bash
-    az monitor scheduled-query show \
-        --resource-group $RESOURCE_GROUP \
-        --name high-failure-rate-alert \
-        --query "{Name:name, Severity:severity, Enabled:enabled, Window:windowSize, Frequency:evaluationFrequency, Threshold:condition.failingPeriods}" \
-        --output table
-    ```
 
     **PowerShell**
     ```powershell
@@ -312,21 +303,30 @@ Kusto 쿼리 언어(KQL)는 Application Insights에서 로그 데이터를 분�
         --output table
     ```
 
+    **Bash**
+    ```bash
+    az monitor scheduled-query show \
+        --resource-group $RESOURCE_GROUP \
+        --name high-failure-rate-alert \
+        --query "{Name:name, Severity:severity, Enabled:enabled, Window:windowSize, Frequency:evaluationFrequency, Threshold:condition.failingPeriods}" \
+        --output table
+    ```
+
     **Enabled** 열에 **True**가 표시되고 심각도, 기간 및 빈도 값이 이전 단계에서 지정한 값과 일치하는지 확인합니다.
 
 1. 다음 명령을 실행하여 리소스 그룹의 예약된 쿼리 경고 규칙을 모두 나열합니다.
-
-    **Bash**
-    ```bash
-    az monitor scheduled-query list \
-        --resource-group $RESOURCE_GROUP \
-        --output table
-    ```
 
     **PowerShell**
     ```powershell
     az monitor scheduled-query list `
         --resource-group $env:RESOURCE_GROUP `
+        --output table
+    ```
+
+    **Bash**
+    ```bash
+    az monitor scheduled-query list \
+        --resource-group $RESOURCE_GROUP \
         --output table
     ```
 

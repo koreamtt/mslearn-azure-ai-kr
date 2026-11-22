@@ -105,14 +105,14 @@ Azure Container Apps 동적 세션은 AI 생성 코드 또는 사용자가 제�
 
 1. 다음 명령을 실행하여 **리소스 값을 터미널 세션으로 불러옵니다**.
 
-    **Bash**
-    ```bash
-    source .env
-    ```
-
     **PowerShell**
     ```powershell
     . .\.env.ps1
+    ```
+
+    **Bash**
+    ```bash
+    source .env
     ```
 
     이 터미널을 열어 둡니다. 나중에 새 터미널을 열면 앱을 시작하기 전에 해당 명령을 다시 실행합니다.
@@ -333,14 +333,14 @@ Azure Container Apps 동적 세션은 AI 생성 코드 또는 사용자가 제�
 
 1. 다음 명령을 실행하여 **Python 환경을 활성화**합니다.
 
-    **Bash**
-    ```bash
-    source .venv/bin/activate
-    ```
-
     **PowerShell**
     ```powershell
     .\.venv\Scripts\Activate.ps1
+    ```
+
+    **Bash**
+    ```bash
+    source .venv/bin/activate
     ```
 
     Windows에서 Git Bash를 사용하는 경우 **source .venv/Scripts/activate**를 실행합니다.

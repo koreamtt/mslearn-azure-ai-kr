@@ -257,26 +257,26 @@ lab:
 
 1. 다음 명령을 실행하여 이전 단계에서 만든 파일의 환경 변수를 터미널 세션에 로드합니다.
 
-    **Bash**
-    ```bash
-    source .env
-    ```
-
     **PowerShell**
     ```powershell
     . .\.env.ps1
     ```
 
-1. **psql**을 사용하여 PostgreSQL 서버에 연결하려면 다음 명령을 실행합니다. 이 명령은 이전 단계에서 로드한 환경 변수를 사용합니다.
-
     **Bash**
     ```bash
-    psql "host=$DB_HOST dbname=$DB_NAME user=$DB_USER sslmode=require"
+    source .env
     ```
+
+1. **psql**을 사용하여 PostgreSQL 서버에 연결하려면 다음 명령을 실행합니다. 이 명령은 이전 단계에서 로드한 환경 변수를 사용합니다.
 
     **PowerShell**
     ```powershell
     psql "host=$env:DB_HOST port=5432 dbname=$env:DB_NAME user=$env:DB_USER sslmode=require"
+    ```
+
+    **Bash**
+    ```bash
+    psql "host=$DB_HOST dbname=$DB_NAME user=$DB_USER sslmode=require"
     ```
 
 1. pgvector 확장을 사용하도록 설정합니다. 벡터 데이터 형식을 사용하려면 먼저 이 확장을 사용하도록 설정해야 합니다.
@@ -333,16 +333,16 @@ lab:
     python -m venv .venv
     ```
 
-1. 다음 명령을 실행하여 Python 환경을 활성화합니다. **참고:** Linux/macOS에서는 Bash 명령을 사용하고 Windows에서는 PowerShell 명령을 사용합니다. Windows에서 Git Bash를 사용하는 경우 **source .venv/Scripts/activate**를 사용합니다.
-
-    **Bash**
-    ```bash
-    source .venv/bin/activate
-    ```
+1. 다음 명령을 실행하여 Python 환경을 활성화합니다. **참고:** Windows에서는 PowerShell 명령을 사용하고, Linux/macOS에서는 Bash 명령을 사용합니다. Windows에서 Git Bash를 사용하는 경우 **source .venv/Scripts/activate**를 사용합니다.
 
     **PowerShell**
     ```powershell
     .\.venv\Scripts\Activate.ps1
+    ```
+
+    **Bash**
+    ```bash
+    source .venv/bin/activate
     ```
 
 1. 필요한 Python 패키지를 설치하려면 다음 명령을 실행합니다. *requirements.txt* 파일에는 웹 프레임워크용 **flask**, PostgreSQL 연결용 **psycopg**, 인증용 **azure-identity**가 포함됩니다.

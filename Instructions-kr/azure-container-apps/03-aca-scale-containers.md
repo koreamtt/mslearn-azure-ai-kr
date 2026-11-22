@@ -105,26 +105,26 @@ AI 애플리케이션은 추론 요청 급증, 일괄 작업 또는 에이전트
 
 1. 이전 단계에서 만든 파일의 환경 변수를 터미널 세션으로 불러오는 적절한 명령을 실행합니다.
 
-    **Bash**
-    ```bash
-    source .env
-    ```
-
     **PowerShell**
     ```powershell
     . .\.env.ps1
     ```
 
-1. 앱 엔드포인트에 연결할 수 있는지 확인합니다.
-
-   **Bash**
+    **Bash**
     ```bash
-    curl -sS "$CONTAINER_APP_URL/" | head
+    source .env
     ```
+
+1. 앱 엔드포인트에 연결할 수 있는지 확인합니다.
 
     **PowerShell**
     ```powershell
     Invoke-RestMethod "$env:CONTAINER_APP_URL/"
+    ```
+
+   **Bash**
+    ```bash
+    curl -sS "$CONTAINER_APP_URL/" | head
     ```
 
     >**참고:** 터미널을 열어 둡니다. 터미널을 닫고 새 터미널을 열면 환경 변수를 다시 만드는 명령을 실행해야 할 수 있습니다.
@@ -136,18 +136,6 @@ AI 애플리케이션은 추론 요청 급증, 일괄 작업 또는 에이전트
 >**참고:** 크기 조정 변경을 포함하여 구성을 업데이트하면 **새 리비전**이 만들어집니다.
 
 1. 다음 명령을 실행하여 HTTP 크기 조정 규칙으로 컨테이너 앱을 업데이트합니다. 이 규칙은 처리 중인 동시 요청을 모니터링하고 수요가 증가하면 앱을 확장합니다.
-
-    **Bash**
-    ```bash
-    az containerapp update \
-        --name $CONTAINER_APP_NAME \
-        --resource-group $RESOURCE_GROUP \
-        --min-replicas 0 \
-        --max-replicas 10 \
-        --scale-rule-name http-scaling \
-        --scale-rule-type http \
-        --scale-rule-http-concurrency 10
-    ```
 
     **PowerShell**
     ```powershell
@@ -161,21 +149,33 @@ AI 애플리케이션은 추론 요청 급증, 일괄 작업 또는 에이전트
         --scale-rule-http-concurrency 10
     ```
 
-1. 다음 명령을 실행하여 크기 조정 규칙이 구성되었는지 확인합니다. 출력에서 **minReplicas**가 **0**이고 **maxReplicas**가 **10**으로 설정된 **http-scaling** 규칙을 찾습니다.
-
     **Bash**
     ```bash
-    az containerapp show \
+    az containerapp update \
         --name $CONTAINER_APP_NAME \
         --resource-group $RESOURCE_GROUP \
-        --query "properties.template.scale"
+        --min-replicas 0 \
+        --max-replicas 10 \
+        --scale-rule-name http-scaling \
+        --scale-rule-type http \
+        --scale-rule-http-concurrency 10
     ```
+
+1. 다음 명령을 실행하여 크기 조정 규칙이 구성되었는지 확인합니다. 출력에서 **minReplicas**가 **0**이고 **maxReplicas**가 **10**으로 설정된 **http-scaling** 규칙을 찾습니다.
 
     **PowerShell**
     ```powershell
     az containerapp show `
         --name $env:CONTAINER_APP_NAME `
         --resource-group $env:RESOURCE_GROUP `
+        --query "properties.template.scale"
+    ```
+
+    **Bash**
+    ```bash
+    az containerapp show \
+        --name $CONTAINER_APP_NAME \
+        --resource-group $RESOURCE_GROUP \
         --query "properties.template.scale"
     ```
 
@@ -195,16 +195,16 @@ AI 애플리케이션은 추론 요청 급증, 일괄 작업 또는 에이전트
     python -m venv .venv
     ```
 
-1. 다음 명령을 실행하여 Python 환경을 활성화합니다. **참고:** Linux/macOS에서는 Bash 명령을 사용합니다. Windows에서는 PowerShell 명령을 사용합니다. Windows에서 Git Bash를 사용하는 경우 **source .venv/Scripts/activate**를 사용합니다.
-
-    **Bash**
-    ```bash
-    source .venv/bin/activate
-    ```
+1. 다음 명령을 실행하여 Python 환경을 활성화합니다. **참고:** Windows에서는 PowerShell 명령을 사용하고, Linux/macOS에서는 Bash 명령을 사용합니다. Windows에서 Git Bash를 사용하는 경우 **source .venv/Scripts/activate**를 사용합니다.
 
     **PowerShell**
     ```powershell
     .\.venv\Scripts\Activate.ps1
+    ```
+
+    **Bash**
+    ```bash
+    source .venv/bin/activate
     ```
 
 1. 다음 명령을 실행하여 클라이언트 앱의 종속성을 설치합니다.
@@ -239,19 +239,19 @@ AI 애플리케이션은 추론 요청 급증, 일괄 작업 또는 에이전트
 
 1. 다음 명령을 실행하여 앱 구성을 YAML 파일로 내보냅니다.
 
-    **Bash**
-    ```bash
-    az containerapp show \
-        --name $CONTAINER_APP_NAME \
-        --resource-group $RESOURCE_GROUP \
-        --output yaml > app-config.yaml
-    ```
-
     **PowerShell**
     ```powershell
     az containerapp show `
         --name $env:CONTAINER_APP_NAME `
         --resource-group $env:RESOURCE_GROUP `
+        --output yaml > app-config.yaml
+    ```
+
+    **Bash**
+    ```bash
+    az containerapp show \
+        --name $CONTAINER_APP_NAME \
+        --resource-group $RESOURCE_GROUP \
         --output yaml > app-config.yaml
     ```
 
@@ -267,14 +267,6 @@ AI 애플리케이션은 추론 요청 급증, 일괄 작업 또는 에이전트
 
 1. 파일을 저장하고 다음 명령을 실행하여 업데이트된 구성을 적용합니다.
 
-    **Bash**
-    ```bash
-    az containerapp update \
-        --name $CONTAINER_APP_NAME \
-        --resource-group $RESOURCE_GROUP \
-        --yaml app-config.yaml
-    ```
-
     **PowerShell**
     ```powershell
     az containerapp update `
@@ -283,21 +275,29 @@ AI 애플리케이션은 추론 요청 급증, 일괄 작업 또는 에이전트
         --yaml app-config.yaml
     ```
 
-1. 다음 명령을 실행하여 방금 적용한 변경 사항을 확인합니다.
-
     **Bash**
     ```bash
-    az containerapp show \
+    az containerapp update \
         --name $CONTAINER_APP_NAME \
         --resource-group $RESOURCE_GROUP \
-        --query "properties.template.scale"
+        --yaml app-config.yaml
     ```
+
+1. 다음 명령을 실행하여 방금 적용한 변경 사항을 확인합니다.
 
     **PowerShell**
     ```powershell
     az containerapp show `
         --name $env:CONTAINER_APP_NAME `
         --resource-group $env:RESOURCE_GROUP `
+        --query "properties.template.scale"
+    ```
+
+    **Bash**
+    ```bash
+    az containerapp show \
+        --name $CONTAINER_APP_NAME \
+        --resource-group $RESOURCE_GROUP \
         --query "properties.template.scale"
     ```
 

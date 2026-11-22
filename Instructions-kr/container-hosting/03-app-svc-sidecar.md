@@ -83,14 +83,14 @@ lab:
 
 1. Bash에서 리소스 값을 로드하려면 다음 명령을 실행합니다. 이 명령은 *.env*의 값을 내보내어 나머지 Azure CLI 명령과 로컬 클라이언트에서 사용할 수 있게 합니다.
 
-    **Bash**
-    ```bash
-    source .env
-    ```
-
     **PowerShell**
     ```powershell
     . .\.env.ps1
+    ```
+
+    **Bash**
+    ```bash
+    source .env
     ```
 
 기본 API는 포트 **8080**, 모델 서버는 포트 **11434**를 사용합니다. 기본 API는 **MODEL_ENDPOINT**를 읽고 **http://localhost:11434**를 통해 사이드카에 추론 요청을 보냅니다. **isMain**을 **true**로 설정한 컨테이너를 정의하고 적용하기 전에는 웹앱이 채팅 API를 제공하지 않습니다.
@@ -119,14 +119,6 @@ lab:
 
 1. 다음 명령을 실행하여 기본 컨테이너와 사이드카 컨테이너 정의를 적용합니다. 이 작업은 공개 채팅 API와 내부 모델 사이드카 간의 런타임 관계를 만들고 최초 컨테이너 가져오기를 시작합니다.
 
-    **Bash**
-    ```bash
-    az webapp sitecontainers create \
-        --name "$APP_NAME" \
-        --resource-group "$RESOURCE_GROUP" \
-        --sitecontainers-spec-file ./sitecontainers-spec.json
-    ```
-
     **PowerShell**
     ```powershell
     az webapp sitecontainers create `
@@ -135,21 +127,29 @@ lab:
         --sitecontainers-spec-file ./sitecontainers-spec.json
     ```
 
-1. 다음 명령을 실행하여 저장된 컨테이너 정의를 확인합니다. App Service가 두 컨테이너를 할당된 역할 및 대상 포트와 함께 저장했는지 확인합니다.
-
     **Bash**
     ```bash
-    az webapp sitecontainers list \
+    az webapp sitecontainers create \
         --name "$APP_NAME" \
         --resource-group "$RESOURCE_GROUP" \
-        --output table
+        --sitecontainers-spec-file ./sitecontainers-spec.json
     ```
+
+1. 다음 명령을 실행하여 저장된 컨테이너 정의를 확인합니다. App Service가 두 컨테이너를 할당된 역할 및 대상 포트와 함께 저장했는지 확인합니다.
 
     **PowerShell**
     ```powershell
     az webapp sitecontainers list `
         --name $env:APP_NAME `
         --resource-group $env:RESOURCE_GROUP `
+        --output table
+    ```
+
+    **Bash**
+    ```bash
+    az webapp sitecontainers list \
+        --name "$APP_NAME" \
+        --resource-group "$RESOURCE_GROUP" \
         --output table
     ```
 
@@ -161,14 +161,6 @@ lab:
 
 1. 다음 명령을 실행하여 모델 서버 로그를 가져옵니다. 컨테이너별 로그를 사용하면 모델 로딩 및 시작 문제를 기본 API 오류와 구분할 수 있습니다.
 
-    **Bash**
-    ```bash
-    az webapp sitecontainers log \
-      --name "$APP_NAME" \
-      --resource-group "$RESOURCE_GROUP" \
-      --container-name model-server
-    ```
-
     **PowerShell**
     ```powershell
     az webapp sitecontainers log `
@@ -177,18 +169,26 @@ lab:
       --container-name model-server
     ```
 
+    **Bash**
+    ```bash
+    az webapp sitecontainers log \
+      --name "$APP_NAME" \
+      --resource-group "$RESOURCE_GROUP" \
+      --container-name model-server
+    ```
+
 1. 로그에 모델이 성공적으로 로드되었다고 표시되고 모델 서버가 포트 **11434**에서 수신 대기하는지 확인합니다.
 
 1. 다음 명령을 실행하여 API 준비 상태 작업을 호출합니다. 기본 API가 공유 네트워크 네임스페이스를 통해 모델 사이드카에 연결할 수 있는지 확인합니다. 응답에는 모델 구성이나 내부 경로를 노출하지 않고 로컬 모델 종속성을 사용할 수 있다고 표시되어야 합니다.
 
-    **Bash**
-    ```bash
-    curl --fail-with-body "${CHAT_API_URL}/health/ready"
-    ```
-
     **PowerShell**
     ```powershell
     Invoke-RestMethod -Uri "$env:CHAT_API_URL/health/ready"
+    ```
+
+    **Bash**
+    ```bash
+    curl --fail-with-body "${CHAT_API_URL}/health/ready"
     ```
 
 ## 공유 볼륨 확인
@@ -197,14 +197,14 @@ lab:
 
 1. 다음 명령을 실행하여 민감하지 않은 모델 매니페스트 필드를 요청합니다. 응답이 성공하면 사이드카가 매니페스트를 기록했고 기본 API가 공유 **/home** 볼륨을 통해 읽었음을 확인할 수 있습니다.
 
-    **Bash**
-    ```bash
-    curl --fail-with-body "${CHAT_API_URL}/model-info"
-    ```
-
     **PowerShell**
     ```powershell
     Invoke-RestMethod -Uri "$env:CHAT_API_URL/model-info"
+    ```
+
+    **Bash**
+    ```bash
+    curl --fail-with-body "${CHAT_API_URL}/model-info"
     ```
 
 1. 응답에 Microsoft Phi-3 Mini 모델, Microsoft ONNX Runtime GenAI, CPU INT4 양자화 및 준비 상태가 표시되는지 확인합니다.
@@ -229,16 +229,16 @@ App Service는 모든 sitecontainer 간에 **/home** 볼륨을 자동으로 공�
 
 1. 다음 명령을 실행하여 Python 환경을 활성화합니다.
 
-    > **참고:** Linux/macOS에서는 Bash 명령을 사용합니다. Windows에서는 PowerShell 명령을 사용합니다. Windows에서 Git Bash를 사용하는 경우 **source .venv/Scripts/activate**를 사용합니다.
-
-    **Bash**
-    ```bash
-    source .venv/bin/activate
-    ```
+    > **참고:** Windows에서는 PowerShell 명령을 사용하고, Linux/macOS에서는 Bash 명령을 사용합니다. Windows에서 Git Bash를 사용하는 경우 **source .venv/Scripts/activate**를 사용합니다.
 
     **PowerShell**
     ```powershell
     .\.venv\Scripts\Activate.ps1
+    ```
+
+    **Bash**
+    ```bash
+    source .venv/bin/activate
     ```
 
 1. 다음 명령을 실행하여 Python 종속성을 설치합니다. 이 명령은 **flask** 및 **requests** 라이브러리를 설치합니다.
@@ -302,19 +302,19 @@ App Service는 모든 sitecontainer 간에 **/home** 볼륨을 자동으로 공�
 - App Service 관리 ID 이미지 가져오기를 사용하려면 레지스트리의 인증-as-ARM 정책을 사용하도록 설정해야 합니다. 옵션 1은 이미지를 빌드하기 전에 이 정책을 확인합니다.
 - 스크립트에서 정책이 비활성화되었다고 보고하면 다음 명령을 실행하여 사용하도록 설정한 다음 옵션 1을 다시 실행합니다.
 
-    **Bash**
-    ```bash
-    az acr config authentication-as-arm update \
-        --registry "$ACR_NAME" \
-        --resource-group "$RESOURCE_GROUP" \
-        --status enabled
-    ```
-
     **PowerShell**
     ```powershell
     az acr config authentication-as-arm update `
         --registry $env:ACR_NAME `
         --resource-group $env:RESOURCE_GROUP `
+        --status enabled
+    ```
+
+    **Bash**
+    ```bash
+    az acr config authentication-as-arm update \
+        --registry "$ACR_NAME" \
+        --resource-group "$RESOURCE_GROUP" \
         --status enabled
     ```
 

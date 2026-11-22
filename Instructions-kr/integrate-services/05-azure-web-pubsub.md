@@ -113,14 +113,14 @@ Azure Web PubSub는 지속적인 클라이언트 연결을 관리하므로 백�
 
 1. 적절한 명령을 실행하여 **Web PubSub 및 Blob Storage 리소스 값을 터미널 세션에 로드**합니다.
 
-    **Bash**
-    ```bash
-    source .env
-    ```
-
     **PowerShell**
     ```powershell
     . .\.env.ps1
+    ```
+
+    **Bash**
+    ```bash
+    source .env
     ```
 
     > **참고:** 터미널을 열어 둡니다. 나중에 새 터미널을 열면 적절한 명령을 다시 실행하여 환경 변수를 다시 로드합니다.
@@ -282,14 +282,14 @@ Azure Web PubSub는 지속적인 클라이언트 연결을 관리하므로 백�
 
 1. 적절한 명령을 실행하여 **Python 가상 환경을 활성화**합니다. Windows에서 Git Bash를 사용하는 경우 **source .venv/Scripts/activate**를 실행합니다.
 
-    **Bash**
-    ```bash
-    source .venv/bin/activate
-    ```
-
     **PowerShell**
     ```powershell
     .\.venv\Scripts\Activate.ps1
+    ```
+
+    **Bash**
+    ```bash
+    source .venv/bin/activate
     ```
 
 1. 다음 명령을 실행하여 **앱 종속성을 설치**합니다. 종속성에는 Flask, Microsoft Entra 인증, Web PubSub 및 Blob Storage SDK가 포함됩니다.
